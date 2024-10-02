@@ -38,6 +38,18 @@ public class BookService {
         return bookRepository.save(book);
     }
 
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+    public void deleteBookById(Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+        if (book.isPresent()) {
+            bookRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Book not found with id: " + id);
+        }
+    }
 
 }
 
